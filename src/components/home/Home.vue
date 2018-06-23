@@ -1,7 +1,7 @@
 <template>
 <div>
   <panel-intro></panel-intro>
-  <panel-title></panel-title>
+  <panel-title v-show="loading"></panel-title>
   <panel-planets v-show="loading" :planets="planets" class="panel-planets"/>
   <button v-on:click="userClick" v-if="loading">Next Planet</button> 
 
@@ -83,10 +83,14 @@ button {
   opacity: 0;
 }
 
+.panel-intro{
+  text-align: center;
+}
 .panel-planets{
   text-align: center;
   margin-top: 20%
 }
+
 img.loading {
   text-align: center;
   opacity:0.65;

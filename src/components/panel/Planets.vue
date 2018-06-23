@@ -17,13 +17,11 @@
 
 <script>
 export default {
-  
   props: ["planets"]
 };
 </script>
 
 <style scoped>
-
 .planet-table {
   width: 250px;
   margin: 0 auto;
@@ -35,8 +33,27 @@ export default {
   padding: 10px;
 }
 
+div {
+  animation-name: planets;
+  animation-delay: 3s;
+}
+
+@-moz-keyframes planets {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .film {
   text-align: center;
 }
-
 </style>

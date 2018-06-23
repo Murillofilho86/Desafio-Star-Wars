@@ -1,16 +1,33 @@
 <template>
-    <div class="starwars-demo">
+    <div class="starwars-demo" v-on:mouseover="scrollDireita()" >
         <img src="//cssanimation.rocks/demo/starwars/images/star.svg" alt="Star" class="star">
         <img src="//cssanimation.rocks/demo/starwars/images/wars.svg" alt="Wars" class="wars">
+  
      </div>
 </template>
 
+<script>
+export default {
+
+  methods: {
+    
+  }
+};
+</script>
+
 <style>
+
+
 .star {
-  animation: star 10s ease-out infinite;
+  animation: star 10s ease-out;
+  animation-delay: 7s;
+  opacity: 0;
+
 }
 .wars {
-  animation: wars 10s ease-out infinite;
+  animation: wars 10s ease-out;
+  animation-delay: 7s;
+  opacity: 0;
 }
 
 @keyframes star {
@@ -49,11 +66,10 @@
   }
 }
 
-
-
 .starwars-demo {
   perspective: 800px;
   transform-style: preserve3d;
+  -webkit-animation-delay: 16s;
 }
 
 .starwars-demo {
@@ -69,7 +85,8 @@ img {
   width: 100%;
 }
 
-.star, .wars {
+.star,
+.wars {
   position: absolute;
 }
 
@@ -92,5 +109,4 @@ img {
     font-size: 7px;
   }
 }
-
 </style>
