@@ -3,14 +3,12 @@
   <panel-intro />
   <panel-title />
   <panel-planets v-show="loaded" :planets="planets" />
-  <panel-loading v-show="!loaded"/>
-
+  <panel-loading v-show="!loaded" />
   <button v-on:click="userClick" name="btn" v-show="loaded">Next Planet</button> 
 
  
  </div>
 </template>
-
 
 <script>
 import Planets from "../panel/Planets.vue";
@@ -32,8 +30,7 @@ export default {
       planets: [],
       imgLoad: "../src/assets/darth_vader.gif",
       loaded: false,
-      url: "https://swapi.co/api/planets/",
-      sound: "https://bit.ly/2xZ7qZq"
+      url: "https://swapi.co/api/planets/"
     };
   },
 
@@ -51,8 +48,8 @@ export default {
   },
 
   created() {
-    this.loaded = false;
     setTimeout(() => {
+      this.loaded = false;
       this.$http
         .get(this.url + (Math.floor(Math.random() * (this.url.length - 1)) + 1))
         .then(res => res.json())

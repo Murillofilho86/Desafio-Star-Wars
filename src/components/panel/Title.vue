@@ -16,12 +16,9 @@ export default {
   },
 
   mounted() {
-    setTimeout(
-      function() {
-        this.$refs.sound.play();
-      }.bind(this),
-      7000
-    );
+    setTimeout(() => {
+      this.$refs.sound.play().bind(this);
+    }, 7000);
   }
 };
 </script>
