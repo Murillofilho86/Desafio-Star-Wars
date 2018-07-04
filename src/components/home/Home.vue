@@ -1,11 +1,13 @@
 <template>
 <div>
-  <panel-intro></panel-intro>
-  <panel-title v-show="loading"></panel-title>
-  <panel-planets v-show="loading" :planets="planets" class="panel-planets"/>
-  <button v-on:click="userClick" v-if="loading">Next Planet</button> 
+  <panel-intro />
+  <panel-title />
+  <panel-planets v-show="loading" :planets="planets" />
+  <panel-loading v-show="!loading"/>
 
- <audio :src="sound" autoplay loop></audio>
+  <button v-on:click="userClick" name="btn" v-show="loading">Next Planet</button> 
+
+  <audio :src="sound" autoplay loop></audio>
  </div>
 </template>
 
@@ -14,12 +16,14 @@
 import Planets from "../panel/Planets.vue";
 import Intro from "../panel/Intro.vue";
 import Title from "../panel/Title.vue";
+import Loading from "../Shared/Loading";
 
 export default {
   components: {
     "panel-intro": Intro,
     "panel-planets": Planets,
-    "panel-title": Title
+    "panel-title": Title,
+    "panel-loading": Loading
   },
 
   name: "app",
@@ -30,7 +34,7 @@ export default {
       imgLoad: "../src/assets/darth_vader.gif",
       loading: false,
       url: "https://swapi.co/api/planets/"
-      // sound: 'https://bit.ly/2xZ7qZq'
+      //, sound: 'https://bit.ly/2xZ7qZq'
     };
   },
 
@@ -38,7 +42,7 @@ export default {
     userClick: function() {
       this.loading = false;
       this.$http
-        .get(this.url + (Math.floor(Math.random() * this.url.length) + 1))
+        .get(this.url + (Math.floor(Math.random() * this.url.length - 1) + 1))
         .then(res => res.json())
         .then(planets => (this.planets = planets), err => console.log(err))
         .finally(() => {
@@ -70,42 +74,10 @@ body {
 button {
   margin-top: 1%;
   margin-left: 40%;
+  position: relative;
+  animation-name: example;
+  animation-duration: 3s;
+  animation-delay: 12s;
+  z-index: 9999;
 }
-
-.intro_animacao {
-  animation: intro 2s ease-out 0s;
-}
-.intro {
-  position: absolute;
-  top: 40%;
-  left: 20%;
-  z-index: 1;
-  opacity: 0;
-}
-
-.panel-intro{
-  text-align: center;
-}
-.panel-planets{
-  text-align: center;
-  margin-top: 20%
-}
-
-img.loading {
-  text-align: center;
-  opacity:0.65;
-	-moz-opacity: 0.65;
-	filter: alpha(opacity=65);
-}
-
-
-.panel-fade-enter, .panel-fade-leave-active{
-    opacity: 0;
-}
-
-.panel-fade-enter-active, .panel-fade-leave-active{
-  transition: opacity .05s;
-}
-
-
 </style>
