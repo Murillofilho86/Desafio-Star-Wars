@@ -2,12 +2,27 @@
     <div class="starwars-demo" v-on:mouseover="scrollDireita()" >
         <img src="//cssanimation.rocks/demo/starwars/images/star.svg" alt="Star" class="star">
         <img src="//cssanimation.rocks/demo/starwars/images/wars.svg" alt="Wars" class="wars">
+        <audio :src="url" id="sound" ref="sound" loop></audio>
     </div>
 </template>
 
 <script>
 export default {
-  methods: {}
+  name: "app",
+  data() {
+    return {
+      url: "https://bit.ly/2xZ7qZq"
+    };
+  },
+
+  mounted() {
+    setTimeout(
+      function() {
+        this.$refs.sound.play();
+      }.bind(this),
+      7000
+    );
+  }
 };
 </script>
 
@@ -62,7 +77,6 @@ export default {
 .starwars-demo {
   perspective: 800px;
   transform-style: preserve3d;
-  animation-delay: 16s;
 }
 
 .starwars-demo {

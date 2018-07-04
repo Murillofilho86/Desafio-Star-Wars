@@ -2,12 +2,12 @@
 <div>
   <panel-intro />
   <panel-title />
-  <panel-planets v-show="loading" :planets="planets" />
-  <panel-loading v-show="!loading"/>
+  <panel-planets v-show="loaded" :planets="planets" />
+  <panel-loading v-show="!loaded"/>
 
-  <button v-on:click="userClick" name="btn" v-show="loading">Next Planet</button> 
+  <button v-on:click="userClick" name="btn" v-show="loaded">Next Planet</button> 
 
-  <audio :src="sound" autoplay loop></audio>
+ 
  </div>
 </template>
 
@@ -29,37 +29,38 @@ export default {
   name: "app",
   data() {
     return {
-      title: "Aqui começa a sua jornada. Que a força esteja com você!",
       planets: [],
       imgLoad: "../src/assets/darth_vader.gif",
-      loading: false,
-      url: "https://swapi.co/api/planets/"
-      //, sound: 'https://bit.ly/2xZ7qZq'
+      loaded: false,
+      url: "https://swapi.co/api/planets/",
+      sound: "https://bit.ly/2xZ7qZq"
     };
   },
 
   methods: {
     userClick: function() {
-      this.loading = false;
+      this.loaded = false;
       this.$http
         .get(this.url + (Math.floor(Math.random() * this.url.length - 1) + 1))
         .then(res => res.json())
         .then(planets => (this.planets = planets), err => console.log(err))
         .finally(() => {
-          this.loading = true;
+          this.loaded = true;
         });
     }
   },
 
   created() {
-    this.loading = false;
-    this.$http
-      .get(this.url + (Math.floor(Math.random() * (this.url.length - 1)) + 1))
-      .then(res => res.json())
-      .then(planets => (this.planets = planets), err => console.log(err))
-      .finally(() => {
-        this.loading = true;
-      });
+    this.loaded = false;
+    setTimeout(() => {
+      this.$http
+        .get(this.url + (Math.floor(Math.random() * (this.url.length - 1)) + 1))
+        .then(res => res.json())
+        .then(planets => (this.planets = planets), err => console.log(err))
+        .finally(() => {
+          this.loaded = true;
+        });
+    }, 16000);
   }
 };
 </script>
