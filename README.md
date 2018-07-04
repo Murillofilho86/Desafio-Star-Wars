@@ -1,8 +1,8 @@
 # Desafio Star Wars
 
-## Dependências necessárias para execuar o projeto
+## Dependências necessárias para execuar o [projeto]
 
-Faça o download do repositório, execute o `npm install` para instalar as dependencias do projeto.
+Faça o download do repositório, execute o `npm install` para instalar as dependencias do [projeto](http://mfilho.com.br/desafio-star-wars/).
 
 ```
 # Última versão estável
@@ -16,10 +16,6 @@ $ npm run dev
 
 OBS.: É necessário ter o Nodejs e NPM instalado na maquina.
 ```
-
-Visualize o projeto [aqui](http://mfilho.com.br/desafio-star-wars/)
-
-###
 
 ## Dependências
 
